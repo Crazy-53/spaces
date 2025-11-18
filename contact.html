@@ -151,6 +151,55 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>        
+        }
+        // Form submission handler
+        const submitBtn = document.getElementById('submitBtn');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const message = messageInput.value.trim();
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, and Message)!');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address!');
+                return;
+            }
+            
+            // Simulate form submission
+            submitBtn.textContent = 'Sending... 🚀';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message, ' + name + '! We will contact you soon about your cosmic journey! 🌟');
+                submitBtn.textContent = 'Message Sent! ✓';
+                
+                // Reset form
+                setTimeout(() => {
+                    nameInput.value = '';
+                    emailInput.value = '';
+                    document.getElementById('phone').value = '';
+                    document.getElementById('interest').selectedIndex = 0;
+                    messageInput.value = '';
+                    submitBtn.textContent = 'Send Message 🚀';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
